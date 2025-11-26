@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.2.0
+- Workflow triggers limited to tags or manual dispatch (CI/Docker/Release/PyPI).
+- Version bump for tagged release.
+
 ## v1.1.0
 - Packaging/metadata fixes to support PyPI trusted publishing flow.
 - Docker pushes target ghcr.io/2pk03/kaf-s3-connector with tagged images.
