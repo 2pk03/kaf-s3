@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="kaf-s3-connector",
-    version="1.0.0",
+    version="1.0.2",
     author="2pk03",
     description="A Python library to handle large Kafka messages using S3.",
     long_description=open('README.md').read(),

@@ -1,5 +1,14 @@
 # Changelog
 
+## v1.0.2
+- Packaging/metadata fixes to support PyPI trusted publishing flow.
+
+## v1.0.1
+- Fixed packaging metadata and release automation for PyPI/GitHub releases.
+- Docker pushes now target ghcr.io/2pk03/kaf-s3-connector; GHCR pull instructions added.
+- Added badges, issue templates, and contributing guide for better adoption.
+- Added Helm chart, metrics samples, and hardened non-root image.
+
 ## v1.0.0
 - Hardened non-root Docker image with healthcheck and Prometheus `/metrics`.
 - Env-driven runtime entrypoint for producer/consumer, DLQ + metrics hooks.
