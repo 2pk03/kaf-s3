@@ -8,8 +8,10 @@ on:
 jobs:
   publish:
     runs-on: ubuntu-latest
+    environment: release
     permissions:
       contents: read
+      id-token: write
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -21,7 +23,5 @@ jobs:
           pip install build
       - name: Build
         run: python -m build
-      - name: Publish to PyPI
+      - name: Publish to PyPI (trusted publisher)
         uses: pypa/gh-action-pypi-publish@v1.9.0
-        with:
-          password: ${{ secrets.PYPI_API_TOKEN }}

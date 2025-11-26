@@ -158,6 +158,14 @@ Build locally:
 docker build -t kaf-s3-connector:local .
 ```
 
+Pull from GHCR:
+
+```bash
+docker pull ghcr.io/2pk03/kaf-s3-connector:latest
+# or a specific tag (git tag or commit SHA)
+docker pull ghcr.io/2pk03/kaf-s3-connector:v1.0.0
+```
+
 Run as consumer (replace envs as needed):
 
 ```bash
