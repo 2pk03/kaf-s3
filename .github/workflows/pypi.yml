@@ -19,13 +19,14 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: ${{ github.event.release.tag_name || github.ref }}
+          fetch-depth: 0  # Fetch all history for setuptools-scm
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
       - name: Install build deps
         run: |
           python -m pip install --upgrade pip
-          pip install build twine
+          pip install build twine setuptools-scm
       - name: Clean dist
         run: rm -rf dist
       - name: Build
