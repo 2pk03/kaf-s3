@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.2.5
+- Add version validation to PyPI workflow to prevent dev version uploads
+- Note: v1.2.3 and v1.2.4 dev versions were incorrectly published due to setuptools-scm detecting commits after tags
+
 ## v1.2.4
 - Fix setuptools-scm configuration to remove local version identifiers for PyPI compatibility
 
