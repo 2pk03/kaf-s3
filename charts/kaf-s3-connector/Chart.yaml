@@ -1,0 +1,6 @@
+apiVersion: v2
+name: kaf-s3-connector
+description: Kafka to S3 offload connector
+type: application
+version: 0.1.0
+appVersion: "0.1.0"

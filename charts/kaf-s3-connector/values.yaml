@@ -1,0 +1,24 @@
+image:
+  repository: ghcr.io/2pk03/kaf-s3-connector
+  tag: latest
+  pullPolicy: IfNotPresent
+
+replicaCount: 1
+
+service:
+  type: ClusterIP
+  port: 8000
+
+env:
+  MODE: consumer
+  TOPIC: large-messages-topic
+  KAFKA_BOOTSTRAP_SERVERS: localhost:9092
+  KAFKA_GROUP_ID: my-s3-consumers
+  S3_BUCKET: my-large-messages-bucket
+  METRICS_PORT: "8000"
+
+resources: {}
+
+nodeSelector: {}
+tolerations: []
+affinity: {}
