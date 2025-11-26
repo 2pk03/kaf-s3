@@ -1,5 +1,10 @@
 # Kafka S3 Connector (`kaf-s3-connector`)
 
+[![CI](https://github.com/2pk03/kaf-s3/actions/workflows/ci.yml/badge.svg)](https://github.com/2pk03/kaf-s3/actions/workflows/ci.yml)
+[![Docker](https://github.com/2pk03/kaf-s3/actions/workflows/docker.yml/badge.svg)](https://github.com/2pk03/kaf-s3/actions/workflows/docker.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Container](https://img.shields.io/badge/container-ghcr.io%2F2pk03%2Fkaf--s3--connector-blue)](https://ghcr.io/2pk03/kaf-s3-connector)
+
 A Python library to seamlessly handle large Kafka messages by offloading them to Amazon S3.
 
 This library provides a custom Kafka Producer and Consumer that automatically handle the process of storing large message payloads in an S3 bucket and passing lightweight references through Kafka.
@@ -11,6 +16,7 @@ This library provides a custom Kafka Producer and Consumer that automatically ha
 -   **Data Integrity:** Verifies the integrity of S3 objects using ETags to prevent data corruption.
 -   **Secure by Default:** Leverages AWS IAM roles and the default `boto3` credential chain, avoiding the need to hardcode secrets.
 -   **Flexible Configuration:** Built on top of `confluent-kafka-python`, allowing for full customization of Kafka client settings, including SASL and SSL.
+-   **Operational Ready:** DLQ support, Prometheus `/metrics`, Helm chart, non-root image, optional compression, TTL hints, SSE-KMS.
 
 ## Installation
 
