@@ -20,6 +20,13 @@ jobs:
         with:
           ref: ${{ github.event.release.tag_name || github.ref }}
           fetch-depth: 0  # Fetch all history for setuptools-scm
+      - name: Get version from tag
+        id: get_version
+        run: |
+          TAG_NAME="${GITHUB_REF#refs/tags/}"
+          VERSION="${TAG_NAME#v}"
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "Building version: $VERSION"
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
@@ -30,6 +37,8 @@ jobs:
       - name: Clean dist
         run: rm -rf dist
       - name: Build
+        env:
+          SETUPTOOLS_SCM_PRETEND_VERSION: ${{ steps.get_version.outputs.version }}
         run: python -m build
       - name: Check artifacts
         run: python -m twine check dist/*
