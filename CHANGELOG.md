@@ -1,8 +1,12 @@
 # Changelog
 
-## v1.2.0
+## v1.2.2
+- Version bump for release with setuptools pin and PyPI checks.
+
+## v1.2.1
+- Pin setuptools<75 for builds (avoid Metadata-Version 2.4 issues) and add twine check in PyPI workflow.
 - Workflow triggers limited to tags or manual dispatch (CI/Docker/Release/PyPI).
-- Version bump for tagged release.
+- Multi-arch Docker builds (amd64, arm64) on tags.
 
 ## v1.1.0
 - Packaging/metadata fixes to support PyPI trusted publishing flow.
