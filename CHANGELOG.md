@@ -1,5 +1,8 @@
 # Changelog
 
+## v1.2.4
+- Fix setuptools-scm configuration to remove local version identifiers for PyPI compatibility
+
 ## v1.2.3
 - Fix PyPI metadata configuration (add [project] section to pyproject.toml)
 - Implement setuptools-scm for fully automated version management from git tags
