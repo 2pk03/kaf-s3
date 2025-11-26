@@ -1,5 +1,11 @@
 # Changelog
 
+## v1.2.3
+- Fix PyPI metadata configuration (add [project] section to pyproject.toml)
+- Implement setuptools-scm for fully automated version management from git tags
+- No manual version updates needed - version now derived automatically from git tags
+- Update PyPI workflow to support setuptools-scm with full git history
+
 ## v1.2.2
 - Version bump for release with setuptools pin and PyPI checks.
 
