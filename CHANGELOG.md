@@ -1,7 +1,9 @@
 # Changelog
 
-## v1.0.2
+## v1.1.0
 - Packaging/metadata fixes to support PyPI trusted publishing flow.
+- Docker pushes target ghcr.io/2pk03/kaf-s3-connector with tagged images.
+- Added badges, issue templates, contributing guide, Helm chart, metrics samples, hardened non-root image.
 
 ## v1.0.1
 - Fixed packaging metadata and release automation for PyPI/GitHub releases.
