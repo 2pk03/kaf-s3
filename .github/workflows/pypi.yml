@@ -33,5 +33,14 @@ jobs:
         run: python -m build
       - name: Check artifacts
         run: python -m twine check dist/*
+      - name: Validate version (no dev versions)
+        run: |
+          VERSION=$(python -c "from setuptools_scm import get_version; print(get_version())")
+          echo "Detected version: $VERSION"
+          if [[ "$VERSION" == *"dev"* ]]; then
+            echo "ERROR: Dev version detected ($VERSION). Only stable releases can be published to PyPI."
+            echo "This usually means the tag doesn't point to the exact commit or there are uncommitted changes."
+            exit 1
+          fi
       - name: Publish to PyPI (trusted publisher)
         uses: pypa/gh-action-pypi-publish@v1.9.0
