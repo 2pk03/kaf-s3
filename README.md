@@ -216,44 +216,49 @@ helm upgrade --install kaf-s3 charts/kaf-s3-connector \
 
 ## Case Study
 
-This toolkit was architected as part of a consulting engagement to solve common document-centric workflow challenges: extraction, segmentation, text cleaning, OCR, and embedding preparation for AI models.
+This connector was architected as part of a consulting engagement to solve a common Apache Kafka® challenge: handling large messages without destabilizing the cluster.
 
-**Full case study:** [Document Processing Pipeline Using docAI Toolkit](https://www.novatechflow.com/p/document-processing-pipeline-using.html)
+**Full case study:** [Kafka-to-S3 Connector: Large Message Offloading and Scalable ETL](https://www.novatechflow.com/p/kafka-to-s3-connector-large-message.html)
 
 ### The Problem
 
-Teams building RAG pipelines or document analytics typically stitch together custom scripts, ad-hoc processing, or partial library support—resulting in inconsistent, brittle pipelines.
+Kafka is designed for high-throughput streaming but has strict limits on message sizes. When workloads produce large payloads—documents, JSON blobs, binary exports, telemetry batches—teams face a choice: raise broker limits (risky), chunk messages (complex), or find a better pattern.
 
 ### The Solution
 
-docAI provides a clean, modular toolkit for building AI-ready document processing flows:
-
-- **Document loading** — PDF, DOCX, Markdown
-- **Page and text splitting** — Configurable chunking
-- **Preprocessing** — Cleaning, normalization
-- **OCR** — Local (Tesseract) or remote (Hugging Face/custom endpoints)
-- **Embedding preparation** — Ready for FAISS, vector DBs, or ML pipelines
-
-### Example Workflow
+`kaf-s3-connector` offloads large payloads to S3 while keeping Kafka responsible only for lightweight references:
 ```
-Source documents (PDF, DOCX, MD)
-        ↓
-   docAI splits & preprocesses
-        ↓
-   Cleaned chunks → embedding model
-        ↓
-   Indexed for search / RAG / analytics
+Producer                          Consumer
+   │                                 │
+   ▼                                 ▼
+┌─────────┐    S3 key + ETag    ┌─────────┐
+│ Payload │ ──────────────────► │  Kafka  │
+│  (big)  │                     │  topic  │
+└────┬────┘                     └────┬────┘
+     │                               │
+     ▼                               ▼
+┌─────────┐                     ┌─────────┐
+│   S3    │ ◄─────────────────► │ Fetch & │
+│ bucket  │    retrieve blob    │ verify  │
+└─────────┘                     └─────────┘
 ```
 
 ### Benefits
 
-- Reduces bespoke glue code
-- Predictable interface for common document tasks
-- Easy integration into production systems
+- **Removes message size limits** — payloads up to 5GB
+- **Stabilizes Kafka clusters** — brokers never see large messages
+- **Enables lakehouse integration** — S3 objects ready for Iceberg, Spark, Flink
+- **Production-ready** — DLQ, compression, ETag integrity, Prometheus metrics, Helm chart
+
+### Use Cases
+
+- Ingesting files, documents, or binary data into streaming pipelines
+- Pre-processing before writing to Apache Iceberg® or Parquet
+- Integrating Kafka with S3-based data lakes
 
 ---
 
-**Need help building document pipelines or RAG systems?**
+**Building data pipelines with Kafka, S3, or lakehouse architectures?**
 
 → [Consulting Services](https://www.novatechflow.com/p/consulting-services.html)  
 → [Book a call](https://cal.com/alexanderalten)
